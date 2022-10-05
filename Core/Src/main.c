@@ -58,7 +58,7 @@ static void MX_GPIO_Init(void);
 extern USBD_HandleTypeDef hUsbDeviceFS;
 
 //Keyboard structure data
-typedef struct {
+typedef struct  {
 	uint8_t MODIFIER;
 	uint8_t RESERVED;
 	uint8_t KEYCODE1;
@@ -67,7 +67,7 @@ typedef struct {
 	uint8_t KEYCODE4;
 	uint8_t KEYCODE5;
 	uint8_t KEYCODE6;
-}; keyboardHID;
+} keyboardHID;
 
 
 //Initialize structure with a default value of 0
@@ -116,6 +116,25 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  keyboardhid.KEYCODE1 = 0x04; //sending the letter 'a'
+	  USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
+	  HAL_Delay(50);
+	  keyboardhid.KEYCODE1 = 0x00; //release key (sending 0)
+	  USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
+	  HAL_Delay(1000);
 
 
   }
@@ -175,10 +194,17 @@ void SystemClock_Config(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  /*Configure GPIO pins : PA0 PA1 PA2 PA3 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 
