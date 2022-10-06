@@ -73,6 +73,64 @@ typedef struct  {
 //Initialize structure with a default value of 0
 keyboardHID keyboardhid = {0,0,0,0,0,0,0,0};
 
+#define PORT_1 GPIOA
+#define PIN_1 GPIO_PIN_0
+
+#define PORT_2 GPIOA
+#define PIN_2 GPIO_PIN_1
+
+#define PORT_3 GPIOA
+#define PIN_3 GPIO_PIN_2
+
+#define PORT_4 GPIOA
+#define PIN_4 GPIO_PIN_3
+
+	uint8_t key;
+
+//	char read (void) {
+//		if ((!(HAL_GPIO_ReadPin (PORT_1, PIN_1))) == 1) {
+//			while ((!(HAL_GPIO_ReadPin (PORT_1, PIN_1))) == 1);
+//			return '1';
+//		}
+//
+//		if ((!(HAL_GPIO_ReadPin (PORT_2, PIN_2))) == 1) {
+//				while ((!(HAL_GPIO_ReadPin (PORT_2, PIN_2))) == 1);
+//				return '2';
+//		}
+//
+//		if ((!(HAL_GPIO_ReadPin (PORT_3, PIN_3))) == 1) {
+//				while ((!(HAL_GPIO_ReadPin (PORT_3, PIN_3))) == 1);
+//				return '3';
+//		}
+//
+//		if ((!(HAL_GPIO_ReadPin (PORT_4, PIN_4))) == 1) {
+//				while ((!(HAL_GPIO_ReadPin (PORT_4, PIN_4))) == 1);
+//				return '4';
+//		}
+//	}
+
+	char read (void) {
+		if ((!(HAL_GPIO_ReadPin (PORT_1, PIN_1))) == 0 || (!(HAL_GPIO_ReadPin (PORT_2, PIN_2))) == 0 || (!(HAL_GPIO_ReadPin (PORT_3, PIN_3))) == 0 || (!(HAL_GPIO_ReadPin (PORT_4, PIN_4))) == 0) {
+				while ((!(HAL_GPIO_ReadPin (PORT_1, PIN_1))) == 0) {
+					return '1';
+			}
+
+				while ((!(HAL_GPIO_ReadPin (PORT_2, PIN_2))) == 0) {
+					return '2';
+			}
+
+				while ((!(HAL_GPIO_ReadPin (PORT_3, PIN_3))) == 0) {
+					return '3';
+			}
+
+				while ((!(HAL_GPIO_ReadPin (PORT_4, PIN_4))) == 0) {
+					return '4';
+			}
+		}
+	}
+
+
+
 /* USER CODE END 0 */
 
 /**
@@ -112,32 +170,59 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+//	  uint8_t key;
+
+
+//	  int one = !(HAL_GPIO_ReadPin (PORT_1, PIN_1));
+//	  int two = !(HAL_GPIO_ReadPin (PORT_2, PIN_2));
+//	  int three = !(HAL_GPIO_ReadPin (PORT_3, PIN_3));
+//	  int four = !(HAL_GPIO_ReadPin (PORT_4, PIN_4));
+
+
+//	  if (HAL_GPIO_ReadPin (PORT_1, PIN_1)) {
+//		  return '1';
+//	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
+	  key = read();
 
 
 
+	  if (key != 0x01){
+	  	  if (key == '1')  keyboardhid.KEYCODE1 = 0x1E;
+	  	  if (key == '2')  keyboardhid.KEYCODE1 = 0x1F;
+	  	  if (key == '3')  keyboardhid.KEYCODE1 = 0x20;
+	  	  if (key == '4')  keyboardhid.KEYCODE1 = 0x21;
 
 
-
-
-
-
-
-
-
-
-	  keyboardhid.KEYCODE1 = 0x04; //sending the letter 'a'
-	  USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
-	  HAL_Delay(50);
-	  keyboardhid.KEYCODE1 = 0x00; //release key (sending 0)
-	  USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
-	  HAL_Delay(1000);
-
+	  	  USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
+	  	  //HAL_Delay (50);
+	  	  keyboardhid.KEYCODE1 = 0x00;  // release key
+	  	  USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
+	  }
 
   }
+
+
+
+
+
+
+
+
+
+	  //keyboardhid.KEYCODE1 = 0x04; //sending the letter 'a'
+	  //USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
+	  //HAL_Delay(50);
+	  //keyboardhid.KEYCODE1 = 0x00; //release key (sending 0)
+	  //USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
+	  //HAL_Delay(1000);
+
+
+
   /* USER CODE END 3 */
 }
 
@@ -200,10 +285,20 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+
   /*Configure GPIO pins : PA0 PA1 PA2 PA3 */
   GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PA4 */
+  GPIO_InitStruct.Pin = GPIO_PIN_4;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
