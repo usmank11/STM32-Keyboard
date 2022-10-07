@@ -438,7 +438,7 @@ int main(void)
 			  keyboardhid.MODIFIER = 0x02; 	// left shift pressed
 			  keyboardhid.KEYCODE1 = 0x30;  // press ']'
 		  }
-		  if (key == '\')
+		  if (key == '\\')
 		  {
 			  keyboardhid.KEYCODE1 = 0x31;  // press '\'
 		  }
