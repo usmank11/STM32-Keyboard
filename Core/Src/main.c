@@ -402,36 +402,153 @@ int main(void)
 			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
 			  keyboardhid.KEYCODE1 = 0x1D;  // press 'z'
 		  }
+		  if (key == ';')
+		  {
+			  keyboardhid.KEYCODE1 = 0x33;  // press ';'
+		  }
+		  if (key == ';')
+		  {
+			  keyboardhid.MODIFIER = 0x02;	// left shift pressed
+			  keyboardhid.KEYCODE1 = 0x33;  // press ';'
+		  }
+		  if (key == '\'')
+		  {
+			  keyboardhid.KEYCODE1 = 0x34;  // press '''
+		  }
+		  if (key == '\"')
+		  {
+			  keyboardhid.MODIFIER = 0x02; 	// left shift pressed
+			  keyboardhid.KEYCODE1 = 0x34;  // press '''
+		  }
+		  if (key == '[')
+		  {
+			  keyboardhid.KEYCODE1 = 0x2F;  // press '['
+		  }
+		  if (key == '{')
+		  {
+			  keyboardhid.MODIFIER = 0x02; 	// left shift pressed
+			  keyboardhid.KEYCODE1 = 0x2F;  // press '['
+		  }
+		  if (key == ']')
+		  {
+			  keyboardhid.KEYCODE1 = 0x30;  // press ']'
+		  }
+		  if (key == '}')
+		  {
+			  keyboardhid.MODIFIER = 0x02; 	// left shift pressed
+			  keyboardhid.KEYCODE1 = 0x30;  // press ']'
+		  }
+		  if (key == '\')
+		  {
+			  keyboardhid.KEYCODE1 = 0x31;  // press '\'
+		  }
+		  if (key == '|')
+		  {
+			  keyboardhid.MODIFIER = 0x02; 	// left shift pressed
+			  keyboardhid.KEYCODE1 = 0x31;  // press '\'
+		  }
 
+
+
+
+		  if (key == ',')
+		  {
+			  keyboardhid.KEYCODE1 = 0x36;  // press ','
+		  }
+		  if (key == '<')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x36;  // press ','
+		  }
 		  if (key == '.')
 		  {
-			  keyboardhid.KEYCODE1 = 0x37;  // press '#'
+			  keyboardhid.KEYCODE1 = 0x37;  // press '.'
 		  }
-		  if (key == '*')
+		  if (key == '>')
 		  {
 			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
-			  keyboardhid.KEYCODE1 = 0x25;  // press '*'
-		  }
-
-		  if (key == '#')
-		  {
-			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
-			  keyboardhid.KEYCODE1 = 0x20;  // press '#'
+			  keyboardhid.KEYCODE1 = 0x37;  // press '.'
 		  }
 		  if (key == '/')
 		  {
-			  keyboardhid.KEYCODE1 = 0x38;  // press '#'
+			  keyboardhid.KEYCODE1 = 0x38;  // press '/'
 		  }
 		  if (key == '?')
 		  {
 			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
-			  keyboardhid.KEYCODE1 = 0x38;  // press '#'
+			  keyboardhid.KEYCODE1 = 0x38;  // press '/'
 		  }
 		  if (key == '!')
 		  {
 			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
-			  keyboardhid.KEYCODE1 = 0x1E;  // press '#'
+			  keyboardhid.KEYCODE1 = 0x1E;  // press '1'
 		  }
+		  if (key == '@')
+		  {
+			  keyboardhid.MODIFIER = 0x02;	// left shift pressed
+			  keyboardhid.KEYCODE1 = 0x1F;	// press '2'
+		  }
+		  if (key == '#')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x20;  // press '3'
+		  }
+		  if (key == '$')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x21;  // press '4'
+		  }
+		  if (key == '%')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x22;  // press '5'
+		  }
+		  if (key == '^')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x23;  // press '6'
+		  }
+		  if (key == '&')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x24;  // press '7'
+		  }
+		  if (key == '*')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x25;  // press '8'
+		  }
+		  if (key == '(')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x26;  // press '9'
+		  }
+		  if (key == ')')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x27;  // press '0'
+		  }
+		  if (key == '-')
+		  {
+			  keyboardhid.KEYCODE1 = 0x2D;  // press '-'
+		  }
+		  if (key == '_')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x2D;  // press '-'
+		  }
+		  if (key == '=')
+		  {
+			  keyboardhid.KEYCODE1 = 0x2E;  // press '='
+		  }
+		  if (key == '+')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x2E;  // press '='
+		  }
+
+
+
 
 
 	  	  USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
