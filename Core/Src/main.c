@@ -73,6 +73,7 @@ typedef struct  {
 //Initialize structure with a default value of 0
 keyboardHID keyboardhid = {0,0,0,0,0,0,0,0};
 
+//Initialize the ports and pins for every input you are using
 #define PORT_1 GPIOA
 #define PIN_1 GPIO_PIN_0
 
@@ -87,44 +88,25 @@ keyboardHID keyboardhid = {0,0,0,0,0,0,0,0};
 
 	uint8_t key;
 
-//	char read (void) {
-//		if ((!(HAL_GPIO_ReadPin (PORT_1, PIN_1))) == 1) {
-//			while ((!(HAL_GPIO_ReadPin (PORT_1, PIN_1))) == 1);
-//			return '1';
-//		}
-//
-//		if ((!(HAL_GPIO_ReadPin (PORT_2, PIN_2))) == 1) {
-//				while ((!(HAL_GPIO_ReadPin (PORT_2, PIN_2))) == 1);
-//				return '2';
-//		}
-//
-//		if ((!(HAL_GPIO_ReadPin (PORT_3, PIN_3))) == 1) {
-//				while ((!(HAL_GPIO_ReadPin (PORT_3, PIN_3))) == 1);
-//				return '3';
-//		}
-//
-//		if ((!(HAL_GPIO_ReadPin (PORT_4, PIN_4))) == 1) {
-//				while ((!(HAL_GPIO_ReadPin (PORT_4, PIN_4))) == 1);
-//				return '4';
-//		}
-//	}
 
+	//Function for each button press. Add more for more keys
 	char read (void) {
-		if ((!(HAL_GPIO_ReadPin (PORT_1, PIN_1))) == 0 || (!(HAL_GPIO_ReadPin (PORT_2, PIN_2))) == 0 || (!(HAL_GPIO_ReadPin (PORT_3, PIN_3))) == 0 || (!(HAL_GPIO_ReadPin (PORT_4, PIN_4))) == 0) {
+		if ((!(HAL_GPIO_ReadPin (PORT_1, PIN_1))) == 0 || (!(HAL_GPIO_ReadPin (PORT_2, PIN_2))) == 0
+				|| (!(HAL_GPIO_ReadPin (PORT_3, PIN_3))) == 0 || (!(HAL_GPIO_ReadPin (PORT_4, PIN_4))) == 0) {
 				while ((!(HAL_GPIO_ReadPin (PORT_1, PIN_1))) == 0) {
-					return '1';
+					return 'T';
 			}
 
 				while ((!(HAL_GPIO_ReadPin (PORT_2, PIN_2))) == 0) {
-					return '2';
+					return 'E';
 			}
 
 				while ((!(HAL_GPIO_ReadPin (PORT_3, PIN_3))) == 0) {
-					return '3';
+					return 'S';
 			}
 
 				while ((!(HAL_GPIO_ReadPin (PORT_4, PIN_4))) == 0) {
-					return '4';
+					return '!';
 			}
 		}
 	}
@@ -170,58 +152,295 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  uint8_t key;
-
-
-//	  int one = !(HAL_GPIO_ReadPin (PORT_1, PIN_1));
-//	  int two = !(HAL_GPIO_ReadPin (PORT_2, PIN_2));
-//	  int three = !(HAL_GPIO_ReadPin (PORT_3, PIN_3));
-//	  int four = !(HAL_GPIO_ReadPin (PORT_4, PIN_4));
-
-
-//	  if (HAL_GPIO_ReadPin (PORT_1, PIN_1)) {
-//		  return '1';
-//	  }
-
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-
 	  key = read();
-
-
 
 	  if (key != 0x01){
 	  	  if (key == '1')  keyboardhid.KEYCODE1 = 0x1E;
 	  	  if (key == '2')  keyboardhid.KEYCODE1 = 0x1F;
 	  	  if (key == '3')  keyboardhid.KEYCODE1 = 0x20;
 	  	  if (key == '4')  keyboardhid.KEYCODE1 = 0x21;
+		  if (key == '5')  keyboardhid.KEYCODE1 = 0x22;
+		  if (key == '6')  keyboardhid.KEYCODE1 = 0x23;
+		  if (key == '7')  keyboardhid.KEYCODE1 = 0x24;
+		  if (key == '8')  keyboardhid.KEYCODE1 = 0x25;
+		  if (key == '9')  keyboardhid.KEYCODE1 = 0x26;
+		  if (key == '0')  keyboardhid.KEYCODE1 = 0x27;
+
+		  if (key == 'a')
+		  {
+			  keyboardhid.KEYCODE1 = 0x04;  // press 'a'
+		  }
+		  if (key == 'b')
+		  {
+			  keyboardhid.KEYCODE1 = 0x05;  // press 'b'
+		  }
+		  if (key == 'c')
+		  {
+			  keyboardhid.KEYCODE1 = 0x06;  // press 'c'
+		  }
+		  if (key == 'd')
+		  {
+			  keyboardhid.KEYCODE1 = 0x07;  // press 'd'
+		  }
+		  if (key == 'e')
+		  {
+			  keyboardhid.KEYCODE1 = 0x08;  // press 'e'
+		  }
+		  if (key == 'f')
+		  {
+			  keyboardhid.KEYCODE1 = 0x09;  // press 'f'
+		  }
+		  if (key == 'g')
+		  {
+			  keyboardhid.KEYCODE1 = 0x0A;  // press 'g'
+		  }
+		  if (key == 'h')
+		  {
+			  keyboardhid.KEYCODE1 = 0x0B;  // press 'h'
+		  }
+		  if (key == 'i')
+		  {
+			  keyboardhid.KEYCODE1 = 0x0C;  // press 'i'
+		  }
+		  if (key == 'j')
+		  {
+			  keyboardhid.KEYCODE1 = 0x0D;  // press 'j'
+		  }
+		  if (key == 'k')
+		  {
+			  keyboardhid.KEYCODE1 = 0x0E;  // press 'k'
+		  }
+		  if (key == 'l')
+		  {
+			  keyboardhid.KEYCODE1 = 0x0F;  // press 'l'
+		  }
+		  if (key == 'm')
+		  {
+			  keyboardhid.KEYCODE1 = 0x10;  // press 'm'
+		  }
+		  if (key == 'n')
+		  {
+			  keyboardhid.KEYCODE1 = 0x11;  // press 'n'
+		  }
+		  if (key == 'o')
+		  {
+			  keyboardhid.KEYCODE1 = 0x12;  // press 'o'
+		  }
+		  if (key == 'p')
+		  {
+			  keyboardhid.KEYCODE1 = 0x13;  // press 'p'
+		  }
+		  if (key == 'q')
+		  {
+			  keyboardhid.KEYCODE1 = 0x14;  // press 'q'
+		  }
+		  if (key == 'r')
+		  {
+			  keyboardhid.KEYCODE1 = 0x15;  // press 'r'
+		  }
+		  if (key == 's')
+		  {
+			  keyboardhid.KEYCODE1 = 0x16;  // press 's'
+		  }
+		  if (key == 't')
+		  {
+			  keyboardhid.KEYCODE1 = 0x17;  // press 't'
+		  }
+		  if (key == 'u')
+		  {
+			  keyboardhid.KEYCODE1 = 0x18;  // press 'u'
+		  }
+		  if (key == 'v')
+		  {
+			  keyboardhid.KEYCODE1 = 0x19;  // press 'v'
+		  }
+		  if (key == 'w')
+		  {
+			  keyboardhid.KEYCODE1 = 0x1A;  // press 'w'
+		  }
+		  if (key == 'x')
+		  {
+			  keyboardhid.KEYCODE1 = 0x1B;  // press 'x'
+		  }
+		  if (key == 'y')
+		  {
+			  keyboardhid.KEYCODE1 = 0x1C;  // press 'y'
+		  }
+		  if (key == 'z')
+		  {
+			  keyboardhid.KEYCODE1 = 0x1D;  // press 'z'
+		  }
+
+
+		  if (key == 'A')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x04;  // press 'a'
+		  }
+		  if (key == 'B')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x05;  // press 'b'
+		  }
+		  if (key == 'C')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x06;  // press 'c'
+		  }
+		  if (key == 'D')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x07;  // press 'd'
+		  }
+		  if (key == 'E')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x08;  // press 'e'
+		  }
+		  if (key == 'F')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x09;  // press 'f'
+		  }
+		  if (key == 'G')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x0A;  // press 'g'
+		  }
+		  if (key == 'H')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x0B;  // press 'h'
+		  }
+		  if (key == 'I')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x0C;  // press 'i'
+		  }
+		  if (key == 'J')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x0D;  // press 'j'
+		  }
+		  if (key == 'K')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x0E;  // press 'k'
+		  }
+		  if (key == 'L')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x0F;  // press 'l'
+		  }
+		  if (key == 'M')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x10;  // press 'm'
+		  }
+		  if (key == 'N')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x11;  // press 'n'
+		  }
+		  if (key == 'O')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x12;  // press 'o'
+		  }
+		  if (key == 'P')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x13;  // press 'p'
+		  }
+		  if (key == 'Q')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x14;  // press 'q'
+		  }
+		  if (key == 'R')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x15;  // press 'r'
+		  }
+		  if (key == 'S')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x16;  // press 's'
+		  }
+		  if (key == 'T')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x17;  // press 't'
+		  }
+		  if (key == 'U')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x18;  // press 'u'
+		  }
+		  if (key == 'V')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x19;  // press 'v'
+		  }
+		  if (key == 'W')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x1A;  // press 'w'
+		  }
+		  if (key == 'X')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x1B;  // press 'x'
+		  }
+		  if (key == 'Y')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x1C;  // press 'y'
+		  }
+		  if (key == 'Z')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x1D;  // press 'z'
+		  }
+
+		  if (key == '.')
+		  {
+			  keyboardhid.KEYCODE1 = 0x37;  // press '#'
+		  }
+		  if (key == '*')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x25;  // press '*'
+		  }
+
+		  if (key == '#')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x20;  // press '#'
+		  }
+		  if (key == '/')
+		  {
+			  keyboardhid.KEYCODE1 = 0x38;  // press '#'
+		  }
+		  if (key == '?')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x38;  // press '#'
+		  }
+		  if (key == '!')
+		  {
+			  keyboardhid.MODIFIER = 0x02;  // left shift pressed
+			  keyboardhid.KEYCODE1 = 0x1E;  // press '#'
+		  }
 
 
 	  	  USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
-	  	  //HAL_Delay (50);
 	  	  keyboardhid.KEYCODE1 = 0x00;  // release key
 	  	  USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
+	  	  HAL_Delay (50);
 	  }
 
   }
-
-
-
-
-
-
-
-
-
-	  //keyboardhid.KEYCODE1 = 0x04; //sending the letter 'a'
-	  //USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
-	  //HAL_Delay(50);
-	  //keyboardhid.KEYCODE1 = 0x00; //release key (sending 0)
-	  //USBD_HID_SendReport(&hUsbDeviceFS, &keyboardhid, sizeof (keyboardhid));
-	  //HAL_Delay(1000);
-
-
 
   /* USER CODE END 3 */
 }
